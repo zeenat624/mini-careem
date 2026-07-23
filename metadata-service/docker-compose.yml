@@ -1,0 +1,6 @@
+metadata:
+  build: ./metadata-service
+  ports:
+    - "8084:8084"
+  depends_on:
+    - redis
