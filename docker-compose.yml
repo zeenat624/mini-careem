@@ -55,6 +55,17 @@ services:
   web:
     build: ./tracking-service/client
 
+    # --- Metadata Service (Node / Redis) ---
+  metadata-redis:
+    image: redis:7-alpine
+
+  metadata:
+    build: ./metadata-service
+    environment:
+      REDIS_URL: redis://metadata-redis:6379
+    depends_on:
+      - metadata-redis
+
   # --- The one front door ---
   gateway:
     image: nginx:1.27-alpine
